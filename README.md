@@ -34,7 +34,7 @@ You need a Koyeb account to successfully deploy and run this application. If you
 
 The fastest way to deploy the NestJS application is to click the **Deploy to Koyeb** button below.
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/koyeb/example-nestjs&branch=main=yarn%20run%20start:prod&name=nestjs-on-koyeb)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/koyeb/example-nestjs&branch=main&run_command=yarn%20run%20start:prod&name=nestjs-on-koyeb)
 
 Clicking on this button brings you to the Koyeb App creation page with everything pre-set to launch this application.
 
