@@ -25,4 +25,4 @@ jobs:
           app-name: nestjs-${{ github.ref_name }}
           service-ports: "3000:http"
           service-routes: "/:3000"
-          git-run-command: "yarn run start:prod"
+          service-env: "PORT=3000"
