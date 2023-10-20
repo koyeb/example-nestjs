@@ -19,10 +19,9 @@
 
 ## About Koyeb and the NestJS example application
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally. No-ops, servers, or infrastructure management.
-This repository contains a NestJS application you can deploy on the Koyeb serverless platform for testing.
+Koyeb is a developer-friendly serverless platform to deploy apps globally. No-ops, servers, or infrastructure management.  This repository contains a NestJS application you can deploy on the Koyeb serverless platform for testing.
 
-This example application is designed to show how a NestJS application can be deployed on Koyeb.
+This example application is designed to show how a NestJS application can be deployed on Koyeb.  You can follow the associated [deploy guide](https://koyeb.com/docs/deploy/nestjs) to learn more about the application and how to extend it.
 
 ## Getting Started
 
@@ -36,7 +35,7 @@ You need a Koyeb account to successfully deploy and run this application. If you
 
 The fastest way to deploy the NestJS application is to click the **Deploy to Koyeb** button below.
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/koyeb/example-nestjs&branch=main&run_command=yarn%20run%20start:prod&name=nestjs-on-koyeb)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?name=example-nestjs&type=git&repository=koyeb/example-nestjs&branch=main&env[PORT]=8000&ports=8000;http;/)
 
 Clicking on this button brings you to the Koyeb App creation page with everything pre-set to launch this application.
 
@@ -51,16 +50,17 @@ Alternatively, you can manually create the application as described below.
 
 On the [Koyeb Control Panel](//app.koyeb.com/apps), click the **Create App** button to go to the App creation page.
 
-1. Select `GitHub` as the deployment method to use
-2. In the repositories list, select the repository you just forked
-3. Specify the branch to deploy, in this case `main`
-4. Then, give your App a name, i.e `nestjs-on-koyeb`, and click **Create App.**
+1. Select `GitHub` as the deployment method to use.
+2. In the repositories list, select the repository you just forked.
+3. Specify the branch to deploy, in this case `main`.
+4. Choose the builder for the repository.  This repository can be built using buildpacks or a Dockerfile.
+5. Give your App a name, i.e `nestjs-on-koyeb`, and click **Deploy**.
 
-You land on the deployment page where you can follow the build of your NestJS application. Once the build is completed, your application is being deployed and you will be able to access it via `<YOUR_APP_NAME>-<YOUR_ORG_NAME>.koyeb.app`.
+You will be taken to the deployment page where you can follow the build of your NestJS application. Once the build is completed, your application will be deployed and you will be able to access it via `<YOUR_APP_NAME>-<YOUR_ORG_NAME>.koyeb.app`.
 
 ## Contributing
 
-If you have any questions, ideas or suggestions regarding this application sample, feel free to open an [issue](//github.com/koyeb/example-nestjs/issues) or fork this repository and open a [pull request](//github.com/koyeb/example-nestjs/pulls).
+If you have any questions, ideas or suggestions regarding this application sample, feel free to open an [issue](https://github.com/koyeb/example-nestjs/issues) or fork this repository and open a [pull request](https://github.com/koyeb/example-nestjs/pulls).
 
 ## Contact
 
