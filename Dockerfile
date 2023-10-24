@@ -1,7 +1,6 @@
 # Build stage
-FROM node:18-alpine AS builder
+FROM node:lts-alpine AS builder
 
-ENV NODE_ENV build
 USER node
 WORKDIR /home/node
 
@@ -13,7 +12,7 @@ RUN npm run build && npm prune --omit=dev
 
 
 # Final run stage
-FROM node:18-alpine
+FROM node:lts-alpine
 
 ENV NODE_ENV production
 USER node
