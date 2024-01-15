@@ -26,3 +26,4 @@ jobs:
           service-ports: "3000:http"
           service-routes: "/:3000"
           service-env: "PORT=3000"
+          skip-cache: true
