@@ -4,11 +4,11 @@ FROM node:lts-alpine AS builder
 USER node
 WORKDIR /home/node
 
-COPY package*.json .
+COPY server/package*.json .
 RUN npm ci
 
 COPY --chown=node:node . .
-RUN npm run build && npm prune --omit=dev
+RUN cd server && npm run build && npm prune --omit=dev
 
 
 # Final run stage
@@ -18,11 +18,11 @@ ENV NODE_ENV production
 USER node
 WORKDIR /home/node
 
-COPY --from=builder --chown=node:node /home/node/package*.json .
-COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules
-COPY --from=builder --chown=node:node /home/node/dist/ ./dist
+COPY --from=builder --chown=node:node /home/node/server/package*.json .
+COPY --from=builder --chown=node:node /home/node/server/node_modules/ ./node_modules
+COPY --from=builder --chown=node:node /home/node/server/dist/ ./dist
 
 ARG PORT
 EXPOSE ${PORT:-3000}
 
-CMD ["node", "dist/main.js"]
+CMD ["npm", "start"]
