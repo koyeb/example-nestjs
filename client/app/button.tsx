@@ -3,7 +3,7 @@
 const FetchButton = () => {
   const handleClick = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/data");
+      const response = await fetch("/api/data");
       const result = await response.json();
       console.log("Data fetched:", result);
     } catch (error) {

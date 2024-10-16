@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:3001/api/:path*", // Proxy to NestJS backend
+        destination: "http://127.0.0.1:3001/:path*", // Proxy to NestJS backend
       },
     ];
   },
