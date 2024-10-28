@@ -8,6 +8,12 @@ interface JwtPayload {
   email: string;
 }
 
+interface AuthResponse {
+  data: {
+    access_token: string;
+  };
+}
+
 export default function AuthPage() {
   const [email, setEmail] = useState("your_username");
   const [password, setPassword] = useState("your_password");
@@ -20,7 +26,7 @@ export default function AuthPage() {
     const endpoint = isLogin ? "/auth/login" : "/auth/register";
 
     try {
-      let response = await axios.post(`/api${endpoint}`, {
+      const response = await axios.post(`/api${endpoint}`, {
         email,
         password,
       });
@@ -30,11 +36,17 @@ export default function AuthPage() {
         auth(response);
       }
     } catch (error) {
-      setError(error.response.data.message);
+      if (axios.isAxiosError(error)) {
+        setError(
+          error.response?.data.message || "An unexpected error occurred"
+        );
+      } else {
+        setError("An unexpected error occurred");
+      }
       console.error("Error auth:", error);
     }
 
-    function auth(response) {
+    function auth(response: AuthResponse) {
       const token = response.data.access_token;
       localStorage.setItem("token", token);
       const decoded = jwtDecode<JwtPayload>(token);

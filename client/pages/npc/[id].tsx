@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+interface NPC {
+  id: number;
+  name: string;
+  role: string;
+  description: string;
+  level: number;
+}
+
 const NPCDetails: React.FC = () => {
-  const [npc, setNpc] = useState<any>(null);
+  const [npc, setNpc] = useState<NPC | null>(null);
   const router = useRouter();
   const { id } = router.query;
 
