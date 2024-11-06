@@ -9,21 +9,23 @@ import { NpcModule } from './npc/npc.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      type: 'postgres',
+      host: 'ep-mute-paper-a46hw29p.us-east-1.pg.koyeb.app',
+      port: 5432,
+      username: 'koyeb-adm',
+      password: 'qtfSDhQ8rxT3',
+      database: 'koyebdb',
+      autoLoadEntities: true,
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      extra: {
+        ssl: {
+          mode: 'require',
+        },
+      },
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'localhost',
-    //   port: 5432,
-    //   username: 'postgres',
-    //   password: 'your_password',
-    //   database: 'your_database',
-    //   autoLoadEntities: true,
-    //   synchronize: true,
-    // }),
     AuthModule,
     UserModule,
     NpcModule,
