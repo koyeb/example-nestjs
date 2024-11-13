@@ -10,4 +10,10 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ nullable: true })
+  username: string;
+
+  @Column({ nullable: true })
+  icon: string;
 }
