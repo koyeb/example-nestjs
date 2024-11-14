@@ -23,19 +23,27 @@ export class TierService {
         where: { id: createTierDto.npc },
       });
       if (!npc) {
-        throw new NotFoundException('Character not found');
+        throw new NotFoundException('NPC not found');
       }
     }
-    const tier = this.tierRepository.create({ ...createTierDto, npc });
+
+    const tier = this.tierRepository.create({
+      ...createTierDto,
+      npc,
+    });
+
     return this.tierRepository.save(tier);
   }
 
   async findAll(): Promise<Tier[]> {
-    return this.tierRepository.find();
+    return this.tierRepository.find({ relations: ['npc'] });
   }
 
   async findOne(id: number): Promise<Tier> {
-    const tier = await this.tierRepository.findOne({ where: { id } });
+    const tier = await this.tierRepository.findOne({
+      where: { id },
+      relations: ['npc'],
+    });
     if (!tier) {
       throw new NotFoundException('Tier not found');
     }
@@ -44,6 +52,17 @@ export class TierService {
 
   async update(id: number, updateTierDto: UpdateTierDto): Promise<Tier> {
     const tier = await this.findOne(id);
+
+    if (updateTierDto.npc) {
+      const npc = await this.characterRepository.findOne({
+        where: { id: updateTierDto.npc },
+      });
+      if (!npc) {
+        throw new NotFoundException('NPC not found');
+      }
+      tier.npc = npc;
+    }
+
     Object.assign(tier, updateTierDto);
     return this.tierRepository.save(tier);
   }

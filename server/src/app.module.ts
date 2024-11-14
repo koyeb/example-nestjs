@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { CharacterModule } from './character/character.module';
 import { WorldModule } from './world/world.module';
 import { TierModule } from './tier/tier.module';
+import { RelationshipModule } from './relationship/relationship.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -32,6 +34,7 @@ import { TierModule } from './tier/tier.module';
     CharacterModule,
     WorldModule,
     TierModule,
+    RelationshipModule,
   ],
   controllers: [AppController],
   providers: [AppService],

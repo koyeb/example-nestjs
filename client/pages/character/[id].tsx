@@ -5,9 +5,20 @@ import axios from "axios";
 interface Character {
   id: number;
   name: string;
-  role: string;
-  description: string;
-  level: number;
+  nickname: string;
+  type: string;
+  class: string;
+  subclass: string;
+  species: string;
+  customSpecies: string;
+  subSpecies: string;
+  gender: string;
+  customGender: string;
+  hair: string;
+  eyes: string;
+  height: string;
+  appearance: string;
+  visibility: number;
 }
 
 const CharacterDetails: React.FC = () => {
@@ -27,19 +38,66 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-8 bg-white shadow-md rounded">
-      <h1 className="text-3xl font-bold mb-4 text-blue-600">{character.name}</h1>
+      <h1 className="text-3xl font-bold mb-4 text-blue-600">
+        {character.name}
+      </h1>
 
       <div className="space-y-3">
         <p>
-          <span className="font-semibold text-gray-700">Role:</span> {character.role}
+          <span className="font-semibold text-gray-700">Nickname:</span>{" "}
+          {character.nickname || "N/A"}
         </p>
         <p>
-          <span className="font-semibold text-gray-700">Level:</span>{" "}
-          {character.level}
+          <span className="font-semibold text-gray-700">Character Type:</span>{" "}
+          {character.type || "N/A"}
         </p>
         <p>
-          <span className="font-semibold text-gray-700">Description:</span>{" "}
-          {character.description || "No description provided."}
+          <span className="font-semibold text-gray-700">Class:</span>{" "}
+          {character.class || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Subclass:</span>{" "}
+          {character.subclass || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Species:</span>{" "}
+          {character.species || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Custom Species:</span>{" "}
+          {character.customSpecies || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Subspecies:</span>{" "}
+          {character.subSpecies || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Gender:</span>{" "}
+          {character.gender || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Custom Gender:</span>{" "}
+          {character.customGender || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Hair:</span>{" "}
+          {character.hair || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Eyes:</span>{" "}
+          {character.eyes || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Height:</span>{" "}
+          {character.height || "N/A"}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Appearance:</span>{" "}
+          {character.appearance || "No appearance description provided."}
+        </p>
+        <p>
+          <span className="font-semibold text-gray-700">Visibility:</span>{" "}
+          {character.visibility}
         </p>
       </div>
 

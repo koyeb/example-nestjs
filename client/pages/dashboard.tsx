@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import CharacterPage from "./character";
 import WorldPage from "./world";
+import TierPage from "./tier";
+import RelationshipPage from "./relationship";
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
@@ -28,14 +30,14 @@ const Dashboard: React.FC = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "Home":
-        return <p>Welcome to the Home tab!</p>;
       case "Worlds":
         return <WorldPage />;
-      case "Characters":
-        return <p>Characters</p>;
+      case "Tiers":
+        return <TierPage />;
       case "Characters":
         return <CharacterPage />;
+      case "Relationships":
+        return <RelationshipPage />;
       default:
         return <p>Welcome to the Home tab!</p>;
     }
@@ -49,7 +51,7 @@ const Dashboard: React.FC = () => {
 
       {/* Tab buttons */}
       <div className="flex justify-center space-x-4 mb-6">
-        {["Home", "Worlds", "Characters", "Characters"].map((tab) => (
+        {["Worlds", "Tiers", "Characters", "Relationships"].map((tab) => (
           <button
             key={tab}
             onClick={() => handleTabChange(tab)}
