@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const CreateNPC: React.FC = () => {
+const CreateCharacter: React.FC = () => {
   const [name, setName] = useState("Gandalf");
   const [role, setRole] = useState("Wizard");
   const [description, setDescription] = useState("A wise old wizard");
@@ -12,7 +12,7 @@ const CreateNPC: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("/api/npc", {
+      await axios.post("/api/character", {
         name,
         role,
         description,
@@ -20,13 +20,13 @@ const CreateNPC: React.FC = () => {
       });
       router.push("/dashboard");
     } catch (error) {
-      console.error("Failed to create NPC:", error);
+      console.error("Failed to create Character:", error);
     }
   };
 
   return (
     <div className="max-w-xl mx-auto p-8 bg-white shadow-md rounded">
-      <h1 className="text-2xl font-bold mb-6">Create NPC</h1>
+      <h1 className="text-2xl font-bold mb-6">Create Character</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name */}
         <input
@@ -78,4 +78,4 @@ const CreateNPC: React.FC = () => {
   );
 };
 
-export default CreateNPC;
+export default CreateCharacter;

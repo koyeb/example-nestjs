@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-interface NPC {
+interface Character {
   id: number;
   name: string;
   role: string;
@@ -10,36 +10,36 @@ interface NPC {
   level: number;
 }
 
-const NPCDetails: React.FC = () => {
-  const [npc, setNpc] = useState<NPC | null>(null);
+const CharacterDetails: React.FC = () => {
+  const [character, setCharacter] = useState<Character | null>(null);
   const router = useRouter();
   const { id } = router.query;
 
   useEffect(() => {
     if (id) {
-      axios.get(`/api/npc/${id}`).then((response) => {
-        setNpc(response.data);
+      axios.get(`/api/character/${id}`).then((response) => {
+        setCharacter(response.data);
       });
     }
   }, [id]);
 
-  if (!npc) return <p>Loading...</p>;
+  if (!character) return <p>Loading...</p>;
 
   return (
     <div className="max-w-2xl mx-auto p-8 bg-white shadow-md rounded">
-      <h1 className="text-3xl font-bold mb-4 text-blue-600">{npc.name}</h1>
+      <h1 className="text-3xl font-bold mb-4 text-blue-600">{character.name}</h1>
 
       <div className="space-y-3">
         <p>
-          <span className="font-semibold text-gray-700">Role:</span> {npc.role}
+          <span className="font-semibold text-gray-700">Role:</span> {character.role}
         </p>
         <p>
           <span className="font-semibold text-gray-700">Level:</span>{" "}
-          {npc.level}
+          {character.level}
         </p>
         <p>
           <span className="font-semibold text-gray-700">Description:</span>{" "}
-          {npc.description || "No description provided."}
+          {character.description || "No description provided."}
         </p>
       </div>
 
@@ -53,4 +53,4 @@ const NPCDetails: React.FC = () => {
   );
 };
 
-export default NPCDetails;
+export default CharacterDetails;

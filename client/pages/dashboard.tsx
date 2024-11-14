@@ -1,7 +1,7 @@
 import withAuth from "../hoc/withAuth";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import NPCPage from "./npc";
+import CharacterPage from "./character";
 import WorldPage from "./world";
 
 const Dashboard: React.FC = () => {
@@ -34,8 +34,8 @@ const Dashboard: React.FC = () => {
         return <WorldPage />;
       case "Characters":
         return <p>Characters</p>;
-      case "NPCs":
-        return <NPCPage />;
+      case "Characters":
+        return <CharacterPage />;
       default:
         return <p>Welcome to the Home tab!</p>;
     }
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
 
       {/* Tab buttons */}
       <div className="flex justify-center space-x-4 mb-6">
-        {["Home", "Worlds", "Characters", "NPCs"].map((tab) => (
+        {["Home", "Worlds", "Characters", "Characters"].map((tab) => (
           <button
             key={tab}
             onClick={() => handleTabChange(tab)}

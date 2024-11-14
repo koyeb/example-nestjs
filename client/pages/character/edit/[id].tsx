@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const EditNPC: React.FC = () => {
+const EditCharacter: React.FC = () => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [description, setDescription] = useState("");
@@ -12,12 +12,12 @@ const EditNPC: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`/api/npc/${id}`).then((response) => {
-        const npc = response.data;
-        setName(npc.name);
-        setRole(npc.role);
-        setDescription(npc.description);
-        setLevel(npc.level);
+      axios.get(`/api/character/${id}`).then((response) => {
+        const character = response.data;
+        setName(character.name);
+        setRole(character.role);
+        setDescription(character.description);
+        setLevel(character.level);
       });
     }
   }, [id]);
@@ -25,16 +25,16 @@ const EditNPC: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/npc/${id}`, { name, role, description, level });
+      await axios.put(`/api/character/${id}`, { name, role, description, level });
       router.push("/dashboard");
     } catch (error) {
-      console.error("Failed to update NPC:", error);
+      console.error("Failed to update Character:", error);
     }
   };
 
   return (
     <div className="max-w-xl mx-auto p-8 bg-white shadow-md rounded">
-      <h1 className="text-2xl font-bold mb-6">Edit NPC</h1>
+      <h1 className="text-2xl font-bold mb-6">Edit Character</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name */}
         <input
@@ -79,7 +79,7 @@ const EditNPC: React.FC = () => {
           type="submit"
           className="w-full bg-blue-500 text-white font-bold py-2 rounded shadow-md transition duration-300 hover:bg-blue-600 focus:ring-2 focus:ring-blue-300"
         >
-          Update NPC
+          Update Character
         </button>
 
         {/* Back Button */}
@@ -95,4 +95,4 @@ const EditNPC: React.FC = () => {
   );
 };
 
-export default EditNPC;
+export default EditCharacter;

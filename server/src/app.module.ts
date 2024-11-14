@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { NpcModule } from './npc/npc.module';
+import { СharacterModule } from './character/character.module';
 import { WorldModule } from './world/world.module';
 
 @Module({
@@ -29,7 +29,7 @@ import { WorldModule } from './world/world.module';
     }),
     AuthModule,
     UserModule,
-    NpcModule,
+    СharacterModule,
     WorldModule,
   ],
   controllers: [AppController],
