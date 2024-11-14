@@ -8,5 +8,6 @@ import { CharacterController } from './character.controller';
   imports: [TypeOrmModule.forFeature([Character])],
   providers: [CharacterService],
   controllers: [CharacterController],
+  exports: [TypeOrmModule],
 })
 export class CharacterModule {}

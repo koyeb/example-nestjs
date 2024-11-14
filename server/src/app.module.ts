@@ -4,9 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { СharacterModule } from './character/character.module';
+import { CharacterModule } from './character/character.module';
 import { WorldModule } from './world/world.module';
-
+import { TierModule } from './tier/tier.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -29,8 +29,9 @@ import { WorldModule } from './world/world.module';
     }),
     AuthModule,
     UserModule,
-    СharacterModule,
+    CharacterModule,
     WorldModule,
+    TierModule,
   ],
   controllers: [AppController],
   providers: [AppService],
