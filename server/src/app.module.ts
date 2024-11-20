@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -13,6 +13,8 @@ import { SpeciesModule } from './species/species.module';
 import { VisibilityModule } from './visibility/visibility.module';
 import { ClassesModule } from './classes/classes.module';
 import { CharTypeModule } from './char-type/char-type.module';
+import { DatabaseModule } from './database/database.module';
+import { DatabaseSeederService } from './database/seeds/database-seeder.service';
 
 @Module({
   imports: [
@@ -34,6 +36,7 @@ import { CharTypeModule } from './char-type/char-type.module';
         },
       },
     }),
+    DatabaseModule,
     AuthModule,
     UserModule,
     CharacterModule,
@@ -49,4 +52,11 @@ import { CharTypeModule } from './char-type/char-type.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  constructor(private readonly databaseSeederService: DatabaseSeederService) {}
+
+  async onModuleInit() {
+    console.log('AppModule initialized');
+    await this.databaseSeederService.seed();
+  }
+}
