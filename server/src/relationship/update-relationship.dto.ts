@@ -1,8 +1,8 @@
-import { IsInt, IsOptional, IsNumber } from 'class-validator';
+import { IsOptional, IsNumber } from 'class-validator';
 
 export class UpdateRelationshipDto {
   @IsOptional()
-  @IsInt()
+  @IsNumber()
   visibility?: number;
 
   @IsOptional()

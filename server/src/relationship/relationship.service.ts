@@ -6,6 +6,7 @@ import { CreateRelationshipDto } from './create-relationship.dto';
 import { UpdateRelationshipDto } from './update-relationship.dto';
 import { Tier } from '../tier/tier.entity';
 import { Character } from '../character/character.entity';
+import { Visibility } from '../visibility/visibility.entity';
 
 @Injectable()
 export class RelationshipService {
@@ -15,6 +16,9 @@ export class RelationshipService {
 
     @InjectRepository(Tier)
     private readonly tierRepository: Repository<Tier>,
+
+    @InjectRepository(Visibility)
+    private readonly visibilityRepository: Repository<Visibility>,
 
     @InjectRepository(Character)
     private readonly characterRepository: Repository<Character>,
@@ -27,7 +31,7 @@ export class RelationshipService {
       npc: npcId,
       pc: pcId,
       tier: tierId,
-      visibility,
+      visibility: visibilityId,
     } = createRelationshipDto;
 
     const npc = await this.characterRepository.findOne({
@@ -43,8 +47,14 @@ export class RelationshipService {
       : null;
     if (tierId && !tier) throw new NotFoundException('Tier not found');
 
+    const visibility = visibilityId
+      ? await this.visibilityRepository.findOne({ where: { id: visibilityId } })
+      : null;
+    if (visibilityId && !visibility)
+      throw new NotFoundException('Visibility not found');
+
     const relationship = this.relationshipRepository.create({
-      visibility: visibility ?? 0,
+      visibility,
       npc,
       pc,
       tier,
@@ -55,14 +65,14 @@ export class RelationshipService {
 
   async findAll(): Promise<Relationship[]> {
     return this.relationshipRepository.find({
-      relations: ['npc', 'pc', 'tier'],
+      relations: ['npc', 'pc', 'tier', 'visibility'],
     });
   }
 
   async findOne(id: number): Promise<Relationship> {
     const relationship = await this.relationshipRepository.findOne({
       where: { id },
-      relations: ['npc', 'pc', 'tier'],
+      relations: ['npc', 'pc', 'tier', 'visibility'],
     });
     if (!relationship) {
       throw new NotFoundException('Relationship not found');
@@ -100,6 +110,17 @@ export class RelationshipService {
         relationship.tier = tier;
       } else {
         throw new NotFoundException('Tier not found');
+      }
+    }
+
+    if (updateRelationshipDto.visibility) {
+      const visibility = await this.visibilityRepository.findOne({
+        where: { id: updateRelationshipDto.visibility },
+      });
+      if (visibility) {
+        relationship.visibility = visibility;
+      } else {
+        throw new NotFoundException('Visibility not found');
       }
     }
 

@@ -1,6 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { User } from '../user/user.entity';
 import { World } from '../world/world.entity';
+import { CharType } from '../char-type/char-type.entity';
+import { Classes } from '../classes/classes.entity';
+import { Species } from '../species/species.entity';
+import { Gender } from '../gender/gender.entity';
+import { Visibility } from '../visibility/visibility.entity';
 
 @Entity()
 export class Character {
@@ -10,8 +15,8 @@ export class Character {
   @ManyToOne(() => World, { nullable: true })
   world: World;
 
-  @Column({ nullable: true })
-  type: string;
+  @ManyToOne(() => CharType, { nullable: true })
+  type: CharType;
 
   @ManyToOne(() => User, { nullable: true })
   owner: User;
@@ -22,20 +27,20 @@ export class Character {
   @Column({ length: 250, nullable: true })
   nickname: string;
 
-  @Column({ length: 500, nullable: true })
-  class: string;
+  @ManyToOne(() => Classes, { nullable: true })
+  class: Classes;
 
   @Column({ length: 500, nullable: true })
   subclass: string;
 
-  @Column({ length: 500, nullable: true })
-  secondClass: string;
+  @ManyToOne(() => Classes, { nullable: true })
+  secondClass: Classes;
 
   @Column({ length: 500, nullable: true })
   secondSubclass: string;
 
-  @Column({ length: 500, nullable: true })
-  species: string;
+  @ManyToOne(() => Species, { nullable: true })
+  species: Species;
 
   @Column({ length: 250, nullable: true })
   customSpecies: string;
@@ -43,8 +48,8 @@ export class Character {
   @Column({ length: 250, nullable: true })
   subSpecies: string;
 
-  @Column({ length: 500, nullable: true })
-  gender: string;
+  @ManyToOne(() => Gender, { nullable: true })
+  gender: Gender;
 
   @Column({ length: 100, nullable: true })
   customGender: string;
@@ -61,6 +66,6 @@ export class Character {
   @Column({ length: 5000, nullable: true })
   appearance: string;
 
-  @Column({ type: 'int', default: 1 })
-  visibility: number;
+  @ManyToOne(() => Visibility, { nullable: true })
+  visibility: Visibility;
 }

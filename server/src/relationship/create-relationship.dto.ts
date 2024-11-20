@@ -1,9 +1,9 @@
 // dto/create-relationship.dto.ts
-import { IsInt, IsOptional, IsNumber } from 'class-validator';
+import { IsOptional, IsNumber } from 'class-validator';
 
 export class CreateRelationshipDto {
   @IsOptional()
-  @IsInt()
+  @IsNumber()
   visibility?: number = 0;
 
   @IsOptional()
