@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import withAuth from "../../hoc/withAuth";
 
 const CreateWorld: React.FC = () => {
   const [name, setName] = useState("Middle-Earth");
@@ -12,9 +13,15 @@ const CreateWorld: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
+      
       await axios.post("/api/world", {
         name,
         description,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       router.push("/dashboard");
     } catch (error) {
@@ -56,4 +63,4 @@ const CreateWorld: React.FC = () => {
   );
 };
 
-export default CreateWorld;
+export default withAuth(CreateWorld);

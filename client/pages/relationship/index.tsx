@@ -8,11 +8,6 @@ interface Character {
   name: string;
 }
 
-interface Tier {
-  id: number;
-  bonus: string;
-}
-
 interface Relationship {
   id: number;
   visibility: {

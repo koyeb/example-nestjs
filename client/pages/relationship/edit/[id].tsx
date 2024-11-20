@@ -18,14 +18,6 @@ interface Visibility {
   desc: string;
 }
 
-interface Relationship {
-  id: number;
-  visibility: Visibility | null;
-  tier: Tier | null;
-  npc: Character;
-  pc: Character;
-}
-
 const EditRelationship: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
