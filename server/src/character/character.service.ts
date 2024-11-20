@@ -16,11 +16,32 @@ export class CharacterService {
   }
 
   async findAll(): Promise<Character[]> {
-    return this.characterRepository.find();
+    return this.characterRepository.find({
+      relations: [
+        'world',
+        'type',
+        'class',
+        'secondClass',
+        'species',
+        'gender',
+        'visibility',
+      ],
+    });
   }
 
   async findOne(id: number): Promise<Character> {
-    const character = await this.characterRepository.findOneBy({ id });
+    const character = await this.characterRepository.findOne({
+      where: { id },
+      relations: [
+        'world',
+        'type',
+        'class',
+        'secondClass',
+        'species',
+        'gender',
+        'visibility'
+      ]
+    });
     if (!character) {
       throw new NotFoundException('Character not found');
     }
