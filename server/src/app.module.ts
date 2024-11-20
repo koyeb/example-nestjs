@@ -8,6 +8,11 @@ import { CharacterModule } from './character/character.module';
 import { WorldModule } from './world/world.module';
 import { TierModule } from './tier/tier.module';
 import { RelationshipModule } from './relationship/relationship.module';
+import { GenderModule } from './gender/gender.module';
+import { SpeciesModule } from './species/species.module';
+import { VisibilityModule } from './visibility/visibility.module';
+import { ClassesModule } from './classes/classes.module';
+import { CharTypeModule } from './char-type/char-type.module';
 
 @Module({
   imports: [
@@ -35,6 +40,11 @@ import { RelationshipModule } from './relationship/relationship.module';
     WorldModule,
     TierModule,
     RelationshipModule,
+    GenderModule,
+    SpeciesModule,
+    VisibilityModule,
+    ClassesModule,
+    CharTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
